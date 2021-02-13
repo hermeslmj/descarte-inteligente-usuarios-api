@@ -4,6 +4,27 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const usuarioRoutes = require('./routes/usuario');
 
+const APP_PORT = process.env.PORT || 3001;
+
+let options = {
+  swaggerDefinition: {
+      info: {
+          description: 'API do Módulo de Usuários',
+          title: 'Descarte Inteligente - Usuários',
+          version: '1.0.0',
+      },
+      host: 'localhost:' + APP_PORT,
+      basePath: '/',
+      produces: [
+          "application/json",
+          "application/xml"
+      ],
+      schemes: ['http']
+  },
+  basedir: __dirname, //app absolute path
+  files: ['./routes/*.js'] //Path to the API handle folder
+};
+
 /**
  * Faz a leitura do arquivo
  * ".env" por padrão
@@ -11,6 +32,7 @@ const usuarioRoutes = require('./routes/usuario');
 dotenv.config();
 
 const app = express();
+const expressSwagger = require('express-swagger-generator')(app);
 app.use(cors());
 app.use(express.json());
 
@@ -49,7 +71,7 @@ mongoose.connect(
     }
   }
 );
-
+expressSwagger(options);
 const { connection } = mongoose;
 
 connection.once('open', () => {
@@ -60,7 +82,7 @@ connection.once('open', () => {
    * Definição de porta e
    * inicialização do app
    */
-  const APP_PORT = process.env.PORT || 3001;
+  
   app.listen(APP_PORT, () => {
     console.log(`Servidor iniciado na porta ${APP_PORT}`);
   });

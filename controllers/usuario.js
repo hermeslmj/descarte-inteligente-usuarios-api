@@ -20,7 +20,7 @@ const criar = async (req, res) => {
 };
 
 const buscarTodos = async (req, res) => {
-  console.log("teste");
+
   try {
     const todosOsUsuarios = await UsuarioServico.buscarTodos();
     res.send(todosOsUsuarios);
@@ -60,7 +60,8 @@ const editar = async (req, res) => {
 
   try {
 
-    await UsuarioServico.editar(id, req.body);
+    const usuarioEditado = await UsuarioServico.editar(id, req.body);
+    res.status(200).send(usuarioEditado);
 
   } catch (error) {
     res.status(500).send({ message: 'Erro ao atualizar a Usuário id: ' + id });
