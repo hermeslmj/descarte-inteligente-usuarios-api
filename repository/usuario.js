@@ -25,8 +25,8 @@ async function buscarPorId(id) {
 
 async function buscarPorEmail(email) {
     const usuario = await UsuariosModel.find({ email: { $eq: email } } );
-    if(usuario) {
-        return usuario
+    if(usuario.length > 0) {
+        return usuario[0];
     }
     return false;
 }
