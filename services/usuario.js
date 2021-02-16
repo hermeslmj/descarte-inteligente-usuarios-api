@@ -34,6 +34,10 @@ async function buscarPorId(id) {
     return await UsuariosRepositorio.buscarPorId(id);
 }
 
+async function buscarPorEmail(email) {
+    return await UsuariosRepositorio.buscarPorEmail(email);
+}
+
 async function buscarTodos() {
     return await UsuariosRepositorio.buscarTodos();
 }
@@ -42,4 +46,4 @@ async function remover(id) {
     return await UsuariosRepositorio.remover(id);
 }
 
-module.exports = { criar, editar, buscarPorId, buscarTodos, remover }
+module.exports = { criar, editar, buscarPorId, buscarPorEmail, buscarTodos, remover }

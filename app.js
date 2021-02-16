@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const usuarioRoutes = require('./routes/usuario');
+const loginRoutes = require('./routes/login');
 
 const APP_PORT = process.env.PORT || 3001;
 
@@ -38,6 +39,7 @@ app.use(express.json());
 
 
 app.use('/api/usuario', usuarioRoutes);
+app.use('/api/login', loginRoutes);
 
 /**
  * Rota raiz

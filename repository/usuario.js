@@ -23,6 +23,14 @@ async function buscarPorId(id) {
     return false;
 }
 
+async function buscarPorEmail(email) {
+    const usuario = await UsuariosModel.find({ email: { $eq: email } } );
+    if(usuario) {
+        return usuario
+    }
+    return false;
+}
+
 async function buscarTodos() {
     const usuarios = await UsuariosModel.find();
     return usuarios;
@@ -32,4 +40,4 @@ async function remover(id) {
     await UsuariosModel.deleteOne({ _id: id });
 }
 
-module.exports = { criar, editar, buscarPorId, buscarTodos, remover }
+module.exports = { criar, editar, buscarPorId, buscarPorEmail, buscarTodos, remover }
