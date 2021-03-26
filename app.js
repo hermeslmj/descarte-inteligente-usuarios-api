@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const usuarioRoutes = require('./routes/usuario');
 const loginRoutes = require('./routes/login');
 
-const APP_PORT = process.env.PORT || 3001;
+const APP_PORT = 3000;
 
 let options = {
   swaggerDefinition: {
